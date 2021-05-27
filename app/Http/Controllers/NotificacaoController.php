@@ -14,6 +14,7 @@ class NotificacaoController extends Controller{
     public function notificacaoZapito(Request $request) {
         $dados = $request->all();
         Log::info($dados);
+        return true;
     }
 
 }
