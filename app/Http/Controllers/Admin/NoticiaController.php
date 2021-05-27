@@ -50,11 +50,10 @@ class NoticiaController extends Controller{
                     ])->post('https://zapito.com.br/api/messages', [
                         "test_mode" => true,
                         "data" => [
-                            {
                             "phone" => $destinatario->telefone,
-                            "message" => $noticia->get_title(),
+                            "message" => $noticia->get_title(), 
+                            "bot_id" => 9688,
                             "test_mode" => true
-                            }
                         ]
                     ]);
                     Log::info($response);
