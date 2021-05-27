@@ -1,0 +1,1 @@
+<a href="{{ url('admin/disparar-noticias') }} " class="btn btn-xs btn-success"><i class="fa fa-ban"></i> Disparar Noticias</a>

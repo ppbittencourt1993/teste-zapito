@@ -13,5 +13,10 @@ Route::group([
         (array) config('backpack.base.middleware_key', 'admin')
     ),
     'namespace'  => 'App\Http\Controllers\Admin',
+
 ], function () { // custom admin routes
+
+    Route::crud('destinatario', 'DestinatarioCrudController');
+    Route::get('disparar-noticias', 'DestinatarioCrudController@dispararNoticias');
+
 }); // this should be the absolute last line of this file

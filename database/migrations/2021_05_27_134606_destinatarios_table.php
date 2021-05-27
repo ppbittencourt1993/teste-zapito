@@ -16,8 +16,8 @@ class DestinatariosTable extends Migration
         Schema::create('destinatarios', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('email')->unique();
             $table->string('telefone')->unique();
+            $table->string('email')->unique()->nullable();
             $table->boolean('ativo');
             $table->timestamps();
         });
