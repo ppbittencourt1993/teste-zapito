@@ -55,21 +55,22 @@ class NoticiaController extends Controller{
                             "test_mode" => true
                         ]
                     ]);
-                
-                    DB::beginTransaction();
-                    try {
 
-                        //Adiciona a noticia a lista de noticias enviadas
-                        $input['titulo'] = $noticia->get_title();
-                        $this->NoticiaEnviadaRepository->criar($input);
+                }
 
-                        DB::commit();
+                //Salva a noticia na tabela de noticias enviadas
+                DB::beginTransaction();
+                try {
 
-                    }catch (\Exception $e) {
-                        DB::rollback();
-                        throw new Exception($e->getMessage());
-                    }
+                    //Adiciona a noticia a lista de noticias enviadas
+                    $input['titulo'] = $noticia->get_title();
+                    $this->NoticiaEnviadaRepository->criar($input);
 
+                    DB::commit();
+
+                }catch (\Exception $e) {
+                    DB::rollback();
+                    throw new Exception($e->getMessage());
                 }
             }
 
