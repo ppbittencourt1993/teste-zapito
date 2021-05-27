@@ -85,8 +85,4 @@ class DestinatarioCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
-
-    public function dispararNoticias() {
-        return "YES";
-    }
 }

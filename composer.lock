@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aed096e6ad35fb2d6f780d459e20000b",
+    "content-hash": "151bbccbb1d3a0a403fede2cc8b96f86",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1431,16 +1431,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.43.0",
+            "version": "v8.44.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "3ec63771a07e251f4fb6c7ef2411a79a314bba65"
+                "reference": "7b3b27dc8911ab02a69731af2ba97b5130b2ddb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/3ec63771a07e251f4fb6c7ef2411a79a314bba65",
-                "reference": "3ec63771a07e251f4fb6c7ef2411a79a314bba65",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/7b3b27dc8911ab02a69731af2ba97b5130b2ddb8",
+                "reference": "7b3b27dc8911ab02a69731af2ba97b5130b2ddb8",
                 "shasum": ""
             },
             "require": {
@@ -1595,7 +1595,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-05-25T13:06:44+00:00"
+            "time": "2021-05-27T16:46:06+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -5328,67 +5328,6 @@
             "time": "2020-07-13T06:12:54+00:00"
         },
         {
-            "name": "vedmant/laravel-feed-reader",
-            "version": "1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vedmant/laravel-feed-reader.git",
-                "reference": "e4693cbbe0465ce16c225c5a126c14791b6a7f29"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vedmant/laravel-feed-reader/zipball/e4693cbbe0465ce16c225c5a126c14791b6a7f29",
-                "reference": "e4693cbbe0465ce16c225c5a126c14791b6a7f29",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0|^8.0",
-                "php": ">=5.6.0",
-                "simplepie/simplepie": "^1.5"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^5.0",
-                "phpunit/phpunit": "^8.4"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Vedmant\\FeedReader\\FeedReaderServiceProvider"
-                    ],
-                    "aliases": {
-                        "FeedReader": "Vedmant\\FeedReader\\Facades\\FeedReader"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Vedmant\\FeedReader\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Vedmant",
-                    "email": "vedmant@gmail.com"
-                },
-                {
-                    "name": "Andrew Judd",
-                    "email": "contact@andrewjudd.ca"
-                }
-            ],
-            "description": "A simple RSS feed reader for Laravel 5|6",
-            "support": {
-                "issues": "https://github.com/vedmant/laravel-feed-reader/issues",
-                "source": "https://github.com/vedmant/laravel-feed-reader/tree/master"
-            },
-            "time": "2020-08-27T12:24:27+00:00"
-        },
-        {
             "name": "vlucas/phpdotenv",
             "version": "v5.3.0",
             "source": {
@@ -5599,6 +5538,59 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.10.0"
             },
             "time": "2021-03-09T10:59:23+00:00"
+        },
+        {
+            "name": "willvincent/feeds",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willvincent/feeds.git",
+                "reference": "1093d06cd6626aabe31e75d6d8a835846064f27c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willvincent/feeds/zipball/1093d06cd6626aabe31e75d6d8a835846064f27c",
+                "reference": "1093d06cd6626aabe31e75d6d8a835846064f27c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "illuminate/support": "~5.0 || ^6.0 || ^7.0 || ^8.0",
+                "php": ">=5.4.0 || ^7.2",
+                "simplepie/simplepie": "1.5.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "willvincent\\Feeds\\FeedsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Feeds": "willvincent\\Feeds\\Facades\\FeedsFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "willvincent\\Feeds\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Will Vincent",
+                    "email": "tcindie@gmail.com"
+                }
+            ],
+            "description": "Laravel 5 Service Provider for the SimplePie library",
+            "support": {
+                "issues": "https://github.com/willvincent/feeds/issues",
+                "source": "https://github.com/willvincent/feeds/tree/v2.2.0"
+            },
+            "time": "2020-09-14T15:37:36+00:00"
         }
     ],
     "packages-dev": [

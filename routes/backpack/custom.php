@@ -17,6 +17,6 @@ Route::group([
 ], function () { // custom admin routes
 
     Route::crud('destinatario', 'DestinatarioCrudController');
-    Route::get('disparar-noticias', 'DestinatarioCrudController@dispararNoticias');
+    Route::get('disparar-noticias', 'NoticiaController@dispararNoticias');
 
 }); // this should be the absolute last line of this file
