@@ -46,15 +46,18 @@ class NoticiaController extends Controller{
                 foreach($destinatarios as $destinatario){
 
                     $response = Http::withHeaders([
-                        'Authorization' => 'Bearer <'. env('TOKEN_ZAPITO'). '>',
+                        'Authorization' => 'Bearer '. env('TOKEN_ZAPITO'),
                     ])->post('https://zapito.com.br/api/messages', [
                         "test_mode" => true,
                         "data" => [
+                            {
                             "phone" => $destinatario->telefone,
                             "message" => $noticia->get_title(),
                             "test_mode" => true
+                            }
                         ]
                     ]);
+                    Log::info($response);
 
                 }
 
