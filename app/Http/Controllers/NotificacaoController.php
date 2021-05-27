@@ -8,7 +8,6 @@ use Log;
 
 class NotificacaoController extends Controller{
 
-
     public function __construct(){
     }
 
@@ -16,6 +15,5 @@ class NotificacaoController extends Controller{
         $dados = $request->all();
         Log::info($dados);
     }
-
 
 }

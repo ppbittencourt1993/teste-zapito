@@ -17,5 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('notificacao-zapito', ['uses' => 'NotificacaoController@notificacaoZapito']);
+Route::post('notificacao-zapito', ['uses' => 'App\Http\Controllers\NotificacaoController@notificacaoZapito']);
 
