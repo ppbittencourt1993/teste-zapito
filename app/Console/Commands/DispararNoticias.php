@@ -1,29 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Console\Commands;
 
-use App\Http\Controllers\Controller;
-use App\Repositories\NoticiaEnviadaRepository;
 use App\Repositories\DestinatarioRepository;
-use Illuminate\Http\Request;
+use App\Repositories\NoticiaEnviadaRepository;
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Feeds;
-use View;
-use Log;
 
-class NoticiaController extends Controller{
+class DispararNoticias extends Command {
+    
+    protected $signature = 'disparar-noticias';
 
-    protected $NoticiaEnviadaRepository;
-    protected $DestinatarioRepository;
+    protected $description = 'Disparar uma noticia retirada do feed rss do G1 para os destinatarios ativos a cada 5 minutos.
+                              Existe um controle interno para que noticias já enviadas não sejam enviadas novamente.';
 
-    public function __construct(NoticiaEnviadaRepository $NoticiaEnviadaRepository, DestinatarioRepository $DestinatarioRepository){
-        $this->NoticiaEnviadaRepository = $NoticiaEnviadaRepository;
+
+    public function __construct(){
+        parent::__construct();
         $this->DestinatarioRepository = $DestinatarioRepository;
+        $this->NoticiaEnviadaRepository = $NoticiaEnviadaRepository;
     }
 
-    public function dispararNoticias() {
+
+    public function handle(){
         date_default_timezone_set('America/Sao_Paulo');
         $destinatarios = $this->DestinatarioRepository->listarAtivos();
         $noticias_enviadas = $this->NoticiaEnviadaRepository->listar();
@@ -36,27 +38,24 @@ class NoticiaController extends Controller{
             //checa se o a noticia ja esta na lista de noticias enviadas
             $res = $this->NoticiaEnviadaRepository->porTitulo($noticia->get_title());
 
-            //Se retornou a noticia sai do loop pois todas noticias antes dela tambem ja terao sido enviadas
-            if($res){
-
-                return redirect('/admin/destinatario');
-
-            } else {
+            //Se ainda nao foi enviada
+            if(!$res){
                 
                 foreach($destinatarios as $destinatario){
 
                     $response = Http::withHeaders([
                         'Authorization' => 'Bearer '. env('TOKEN_ZAPITO'),
-                    ])->post('https://zapito.com.br/api/messages', [
-                        "test_mode" => true,
-                        "data" => [
-                            "phone" => $destinatario->telefone,
-                            "message" => $noticia->get_title(), 
-                            "bot_id" => 9688,
-                            "test_mode" => true
+                        'Content-Type' => 'application/json'
+                    ])
+                    ->post('https://zapito.com.br/api/messages', [
+                        'data' => [
+                            [
+                                'phone' => $destinatario->telefone,
+                                'message' => $noticia->get_title(). "\n\n" .$destinatario->nome. ", se quiser ver a noticia completa acesse: ". $noticia->get_link(), 
+                                'test_mode' => true
+                            ]
                         ]
                     ]);
-                    Log::info($response);
 
                 }
 
@@ -74,12 +73,12 @@ class NoticiaController extends Controller{
                     DB::rollback();
                     throw new Exception($e->getMessage());
                 }
+                
+                return redirect('/admin/destinatario');
             }
 
-            return redirect('/admin/destinatario');
-        // return View::make('feed', $noticias);
         }
+        
+        return redirect('/admin/destinatario');
     }
-
-
 }
