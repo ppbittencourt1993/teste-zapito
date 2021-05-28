@@ -76,12 +76,12 @@ class DispararNoticias extends Command {
                     DB::rollback();
                     throw new Exception($e->getMessage());
                 }
-                
-                return redirect('/admin/destinatario');
+
+                return true;
             }
 
         }
         
-        return redirect('/admin/destinatario');
+        return true;
     }
 }
