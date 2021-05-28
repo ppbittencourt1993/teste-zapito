@@ -12,13 +12,16 @@ use Feeds;
 
 class DispararNoticias extends Command {
     
+    protected $DestinatarioRepository;
+    protected $NoticiaEnviadaRepository;
+
     protected $signature = 'disparar-noticias';
 
     protected $description = 'Disparar uma noticia retirada do feed rss do G1 para os destinatarios ativos a cada 5 minutos.
                               Existe um controle interno para que noticias já enviadas não sejam enviadas novamente.';
 
 
-    public function __construct(){
+    public function __construct(DestinatarioRepository $DestinatarioRepository, NoticiaEnviadaRepository $NoticiaEnviadaRepository){
         parent::__construct();
         $this->DestinatarioRepository = $DestinatarioRepository;
         $this->NoticiaEnviadaRepository = $NoticiaEnviadaRepository;
